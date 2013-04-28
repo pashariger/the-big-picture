@@ -14,10 +14,7 @@
 		  <div class="navbar-inner">
 		    <a class="brand app-title" href="#" style="margin-left:3px;">THE BIG PICTURE</a>
 		    <ul class="nav">
-		      <li class="active"><a href="/">Projects</a></li>
-		      <li><a href="#">Save</a></li>
-		      <li><a href="#">Refresh</a></li>
-		      <li class="pull-right"><a href="#">Weather: 65F</a></li>
+
 		    </ul>
 		  </div>
 		</div>

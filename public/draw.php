@@ -12,12 +12,7 @@
 	    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'></script>
 	    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js'></script>
 	    <script type='text/javascript' src='js/jquery.ui.touch-punch.min.js'></script>
-		<script type='text/javascript' src='js/jquery.jsPlumb-1.3.16-all-min.js'></script>
-
-		<style>
-
-
-		</style>			
+		<script type='text/javascript' src='js/jquery.jsPlumb-1.3.16-all-min.js'></script>			
 
 	</head>
 	<body style="padding-top:50px;">
@@ -28,8 +23,9 @@
     <a class="brand app-title" href="#" style="margin-left:3px;">THE BIG PICTURE <?=$mockup_folder?' | '.$mockup_folder:''?></a>
     <ul class="nav">
       <li><a href="/">Projects</a></li>
-      <li><a href="#">Save</a></li>
-      <li><a href="#">Refresh</a></li>
+      <li><a class="save-layout" href="#">Save Layout <i class="icon-file"></i></a></li>
+      <li><a href="#" class="">Autosave: <input id="auto-save-toggle" type="checkbox" style="top:-4px;position:relative;" checked> - <i id="auto-save-icon" class="icon-ok"></i></a></li>
+      <li><a class="refresh-layout" href="/?selected=<?=$mockup_folder?>">Refresh <i class="icon-refresh"></i></a></li>
       <li class="pull-right"><a href="#">Weather: 65F</a></li>
     </ul>
   </div>
@@ -68,18 +64,7 @@
 
 		</script>
 
-		<!-- title and menu -->
-<!-- 		<div class="live-wire-menu"> -->
-<!-- 			<div class="app-title">THE BIG PICTURE</div><br>
-			<div class="app-author">by Pasha Riger</div><br> -->
-<!-- 			<div class="app-menu">
-				<a class="save-layout btn" href="#">Save Layout Positions <i class="icon-file"></i></a>
-				<a class="refresh-layout btn" href="/?selected=<?=$mockup_folder?>">Refresh <i class="icon-refresh"></i></a> 
-            	<a href="#" class="btn">Autosave: <input id="auto-save-toggle" type="checkbox" style="top:-4px;position:relative;" checked> - <i id="auto-save-icon" class="icon-ok"></i></a>
-        	</div>
-    	</div>
-
-		<div class="modal hide fade">
+		<div class="modal hide fade" style="">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title"></h3>
@@ -87,7 +72,7 @@
 			<div class="modal-body">
 			</div>	
 		</div>
-		 -->
+
 		<?php //set previous positions if positions file exists.
 
 			$ignores = array();
@@ -107,6 +92,11 @@
 				{
 					$new_positions[$pos['id']]['left'] = $pos['left'];
 					$new_positions[$pos['id']]['top'] = $pos['top'];
+
+					if(isset($pos['notes'])){
+						$new_positions[$pos['id']]['notes'] = $pos['notes'];
+					}
+					
 				}
 			} 
 		?>
@@ -141,13 +131,9 @@
 			    		</div>
 			    		<div class="task-list" style="display:none;" data-title="<?=$page_name?>">
 			    			<ul>
-			    				<li><input type="text" placeholder="Task 1"></li>
-			    				<li><input type="text" placeholder="Task 2"></li>
-			    				<li><input type="text" placeholder="Task 3"></li>
-			    				<li><input type="text" placeholder="Task 4"></li>
-			    				<li><input type="text" placeholder="Task 5"></li>
-			    				<li><input type="text" placeholder="Task 6"></li>
-			    			</ul>
+			    				<li style="margin-bottom:8px;"><strong>TASKS FOR: <?=$page_name?></strong></li>
+			    				<li><textarea class="thumb-notes" data-title="<?=$page_name?>" placeholder="Notes" rows="9"><?=isset($new_positions[$page_name]['notes'])?$new_positions[$page_name]['notes']:''?></textarea></li>
+				    			</ul>
 			    		</div>
 			    		<iframe scrolling="no" class="thumbnail" data-title="<?=$page_name?>" src="/mockups/<?=$mockup_folder?>/<?=$page_name?>.html"></iframe>
 
@@ -275,10 +261,11 @@
 			//save layout to file
 			function save_layout(){
 				var shapes = $('.shape');
+				var notes = $('.thumb-notes');
 				var jsonObj = []; //declare array
 
 				for (var i = 0; i < shapes.length; i++) {
-				        jsonObj.push({id: $(shapes[i]).attr('data-title'), left: $(shapes[i]).css('left'), top: $(shapes[i]).css('top')});
+				        jsonObj.push({id: $(shapes[i]).attr('data-title'), notes: $(notes[i]).val(),  left: $(shapes[i]).css('left'), top: $(shapes[i]).css('top')});
 				    }
 				$.post("/save_layout.php", { new_positions: JSON.stringify(jsonObj) } );
 			    return false;
@@ -287,6 +274,7 @@
 
 			//maximizing thumbnails in modal
 			$('.maximize-thumb').click(function() {
+				console.log('event');
 				var url = $(this).attr('href');
 				var page_name = $(this).data('title');
 
