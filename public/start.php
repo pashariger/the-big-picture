@@ -48,7 +48,7 @@
 
 					<hr>
 
-					<h2><a href="http://github.com">Fork it on Github</a></h2>
+					<h2><a href="https://github.com/invalidka/the-big-picture">Fork it on Github</a></h2>
 					<p>And help make it into a real product!</p>
 
 				</div>
