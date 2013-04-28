@@ -1,0 +1,146 @@
+.thumbnail {
+    -moz-transform: scale(0.25, 0.25); 
+    -webkit-transform: scale(0.25, 0.25); 
+    -o-transform: scale(0.25, 0.25);
+    -ms-transform: scale(0.25, 0.25);
+    transform: scale(0.25, 0.25); 
+    -moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    border: solid #ccc 6px;
+    top:50px;
+    position: relative;
+    width: 1000px;
+    height: 1000px;
+    z-index: 0;
+    overflow: hidden;
+}
+.page-title{ 
+	position:absolute;
+	width:250px;
+	color: black;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	z-index: 100;
+}
+.page-title a{
+	text-transform: uppercase;
+
+	color: black;
+}
+.page-overlay{
+	position:absolute;
+	width:250px;
+	height:300px;
+	z-index: 100;
+}
+.page-thumb{
+	color:black;
+	width:250px;
+	height:300px;
+	background-image:none;
+	background-color:none;
+	z-index: 100;
+	opacity: 1;
+}
+.app-title{
+/*				position: absolute;
+	width:100%;
+	text-align: center;
+	font-size: 36px;*/
+	font-family: Arial;
+	color:black;
+/*				z-index: 0;
+	padding-bottom: 10px;
+	margin-bottom: 20px;*/
+}
+.app-author{
+	position: absolute;
+	width:100%;
+	text-align: center;
+	font-size: 15px;
+	font-family: Arial;
+	color:black;
+	z-index: 0;
+	padding-top: 5px;
+}
+.app-menu{
+	padding-top: 10px;
+}
+
+
+
+.modal{
+	height:85%;
+	margin: 0 0 0 -600px;
+	     width: 1200px;
+}
+.modal-body{
+	height:800px;
+	max-height:800px;
+}
+.live-wire-menu{
+	position: absolute;
+	top:15px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 100%;
+	text-align: center;
+}
+
+.sidebar{
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+	width:200px;
+	height:100%;
+	position: absolute;
+/*				background-color: red;*/
+}
+
+.sidebar ul{
+	list-style-type: none;
+}
+
+.page{
+	padding-left: 3px;
+	padding-top: 10px;
+	margin-bottom: 5px;
+	padding-bottom: 12px;
+	border-bottom: 1px black solid;
+}
+
+
+
+.pagename{
+	width:150px;
+	height:30px;
+	font-size: 14px;
+	font-family: Arial;
+	text-transform: uppercase;
+
+}
+
+
+.pagename:hover{
+	font-size: 20px;
+	color: green;
+	cursor: pointer;
+}
+
+.links{
+	margin-top: 5px;
+}
+
+.links li{
+	padding-bottom: 2px;
+	text-transform: uppercase;
+}
+
+.project-link{
+	font-family: Arial;
+	margin-bottom: 10px;
+	font-size: 20px;
+	text-transform: uppercase;
+}
