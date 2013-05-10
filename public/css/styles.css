@@ -74,8 +74,8 @@
 
 .modal{
 	height:85%;
-	margin: 0 0 0 -600px;
-	     width: 1200px;
+	margin: 0 -47.5%;
+	width: 95%;
 }
 .modal-body{
 	height:800px;

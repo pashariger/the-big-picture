@@ -69,7 +69,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h3 class="modal-title"></h3>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="overflow:hidden;height:90%;">
 			</div>	
 		</div>
 
@@ -280,7 +280,7 @@
 
 			    $('.modal').modal('toggle');
 			    $('.modal-title').html(page_name);
-			    $('.modal-body').html('<iframe class="thumb-upclose" scrolling="auto" frameBorder="0" style="width:100%;height:98%" src="'+url+'">');
+			    $('.modal-body').html('<iframe class="thumb-upclose"  frameBorder="0" style="overflow-x: hidden; overflow-y: scroll;width:100%;height:98%" src="'+url+'">');
 
 			    return false;
 			});
